@@ -2,35 +2,22 @@ import React, { Component } from 'react';
 import Page from './TextEditor/Page';
 
 class TextEditor extends Component {
-  constructor() {
-    super();
-    this.state = {
-      files: [],
-      pages: [],
-    }
-  }
-
-  componentWillMount() {
-      //this.addFiles(this.props.files);
-  }
-
-  addFiles(files) {
-    for (let file in files) {
-      this.addFile(file);
-    }
-  }
-
-  addFile(file) {
-    let files = this.state.files;
-    files.push(file);
-    this.setState({files: files});
-  }
-
   render() {
+    let pages;
+    if (this.props.files) {
+      if (this.props.files.length !== 0) {
+        pages = this.props.files.map(file => {
+          //console.log(file);
+          return (
+            <Page key={file.id} file={file} />
+          );
+        });
+      }
+    }
     return (
       <div className="TextEditor">
         <h3>TextEditor</h3>
-        <Page />
+        {pages}
       </div>
     );
   }

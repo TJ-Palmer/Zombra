@@ -1,0 +1,23 @@
+.Line {
+  width: 100%;
+  padding: 3px 0;
+  background: #ddd;
+  font-family: "Courier New";
+  white-space: pre-wrap;
+}
+.Line:focus {
+  background: #bbb;
+  outline: none;
+}
+.LineText {
+  white-space: pre-wrap;
+}
+.LineNumber {
+  padding: 3px 10px;
+  user-select: none;
+  color: #ccc;
+  background: #333;
+}
+.LineNumber:hover {
+  cursor: default;
+}

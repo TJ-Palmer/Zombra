@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import TextEditor from './Components/TextEditor';
 import './App.css';
 
@@ -11,45 +12,34 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.getFiles();
+    this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile1.json');
+    this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile2.json');
+    this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile3.json');
   }
 
-  componentDidMount() {
-    //this.getFiles();
-  }
-
-  load(callback) {
-    let file = new XMLHttpRequest();
-    file.overrideMimeType("application/json");
-    file.open('GET', 'https://raw.githubusercontent.com/TJ-Palmer/Zombra/master/testfiles/basicFile.json');
-    file.onreadystatechange = function() {
-      if (file.readyState === 4 && file.status === 200) {
-        callback(file);
+  getFiles(url) {
+    $.ajax({
+      url: url,
+      dataType:'json',
+      cache: false,
+      success: function(data) {
+        let files = this.state.files;
+        files.push(data);
+        this.setState({files: files}, function() {
+          //console.log(this.state);
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
       }
-    };
-    file.send(null);
-  }
-
-  getFiles() {
-    let files = [];
-
-    this.load(function(response) {
-      console.log(response.responseText);
-      console.log(JSON.parse(response.responseText));
-      files.push({
-        name: "test file",
-        value: "asdfasdf",
-      });
     });
-
-    this.setState({files: files});
   }
 
   render() {
     return (
       <div className="App">
         <h3>Hello World!</h3>
-        <TextEditor files={this.state.files}/>
+        <TextEditor files={this.state.files} />
       </div>
     );
   }
