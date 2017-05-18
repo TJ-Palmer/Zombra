@@ -5,13 +5,25 @@ class TextEditor extends Component {
   constructor() {
     super();
     this.state = {
-      openFiles: [],
+      files: [],
       pages: [],
     }
   }
 
   componentWillMount() {
+      //this.addFiles(this.props.files);
+  }
 
+  addFiles(files) {
+    for (let file in files) {
+      this.addFile(file);
+    }
+  }
+
+  addFile(file) {
+    let files = this.state.files;
+    files.push(file);
+    this.setState({files: files});
   }
 
   render() {

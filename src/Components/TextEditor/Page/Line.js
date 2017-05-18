@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import Number from './Line/Number';
+import Text from './Line/Text';
 
 class Line extends Component {
   render() {
     return (
       <div className="Line">
-        <h3>Line</h3>
+        <Number />
+        <Text />
       </div>
     );
   }
