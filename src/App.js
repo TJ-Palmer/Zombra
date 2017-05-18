@@ -34,7 +34,7 @@ class App extends Component {
     let files = [];
 
     this.load(function(response) {
-      console.log(response);
+      console.log(response.responseText);
       console.log(JSON.parse(response.responseText));
       files.push({
         name: "test file",
