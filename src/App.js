@@ -20,8 +20,8 @@ class App extends Component {
 
   load(callback) {
     let file = new XMLHttpRequest();
-    //file.overrideMimeType("application/json");
-    file.open('GET', '');
+    file.overrideMimeType("application/json");
+    file.open('GET', 'https://raw.githubusercontent.com/TJ-Palmer/Zombra/master/testfiles/basicFile.json');
     file.onreadystatechange = function() {
       if (file.readyState === 4 && file.status === 200) {
         callback(file);
@@ -34,8 +34,8 @@ class App extends Component {
     let files = [];
 
     this.load(function(response) {
-      console.log(response.responseText);
-      //console.log(JSON.parse(response.responseText));
+      console.log(response);
+      console.log(JSON.parse(response.responseText));
       files.push({
         name: "test file",
         value: "asdfasdf",
