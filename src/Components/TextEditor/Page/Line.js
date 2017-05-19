@@ -5,7 +5,6 @@ import Text from './Line/Text';
 class Line extends Component {
   keyDown(lineNumber, event) {
     this.props.onKeyDown(event, lineNumber);
-    event.preventDefault();
   }
 
   mouseDown(lineNumber, event) {

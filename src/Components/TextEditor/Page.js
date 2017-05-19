@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Cursor from './Page/Cursor';
 import Line from './Page/Line';
 
 class Page extends Component {
@@ -18,12 +19,12 @@ class Page extends Component {
 
     if (file) {
       let line = file.lines[lineNumber - 1];
-      if (event.keyCode === 8 || event.key === "Backspace") {
+      if (event.keyCode === 8  || event.key === "Backspace") {
         line = line.slice(0, line.length - 1);
         file.lines[lineNumber - 1] = line;
         this.setState({file: file});
       }
-      if (event.key === "Enter") {
+      if (event.keyCode === 13 || event.key === "Enter") {
         let lines = file.lines;
         for (var i = file.lines.length; i >= lineNumber; i--) {
           lines[i+1] = lines[i];
@@ -32,12 +33,19 @@ class Page extends Component {
         file.lines = lines;
         this.setState({file: file});
       }
+      if (event.keyCode === 37 || event.key === "ArrowLeft") {
+        event.preventDefault();
+      }
       if (event.keyCode === 38 || event.key === "ArrowUp") {
         if (lineNumber !== 1) {
           let cursor = this.state.cursor;
           cursor.lineFocus = lineNumber - 1;
           this.setState({cursor: cursor});
         }
+        event.preventDefault();
+      }
+      if (event.keyCode === 39 || event.key === "ArrowRight") {
+        event.preventDefault();
       }
       if (event.keyCode === 40 || event.key === "ArrowDown") {
         if (file.lines.length !== lineNumber) {
@@ -45,11 +53,20 @@ class Page extends Component {
           cursor.lineFocus = lineNumber + 1;
           this.setState({cursor: cursor});
         }
+        event.preventDefault();
+      }
+      if (event.keyCode === 32 || event.key === " ") {
+        event.preventDefault();
+      }
+      if (event.keyCode === 9 || event.key === "Tab") {
+        event.preventDefault();
       }
       if (event.key.length === 1) {
-        line += event.key;
-        file.lines[lineNumber - 1] = line;
-        this.setState({file: file});
+        if (!event.ctrlKey && !event.altKey) {
+          line += event.key;
+          file.lines[lineNumber - 1] = line;
+          this.setState({file: file});
+        }
       }
     }
   }
@@ -65,7 +82,9 @@ class Page extends Component {
   }
 
   focusLine() {
-    ReactDOM.findDOMNode(this.refs.activeLine).focus();
+    if (this.refs.activeLine) {
+      ReactDOM.findDOMNode(this.refs.activeLine).focus();
+    }
   }
 
   render() {
@@ -94,8 +113,10 @@ class Page extends Component {
     }
     return (
       <div className="Page">
-        <h3>Page: {this.props.file.name}</h3>
-        {lines}
+        <div className="Code">
+          {lines}
+        </div>
+        <Cursor />
       </div>
     );
   }

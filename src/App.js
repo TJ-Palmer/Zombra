@@ -13,8 +13,8 @@ class App extends Component {
 
   componentWillMount() {
     this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile01.json');
-    this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile02.json');
-    this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile03.json');
+    // this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile02.json');
+    // this.getFiles('https://tj-palmer.github.io/projects/testfiles/basicFile03.json');
   }
 
   getFiles(url) {

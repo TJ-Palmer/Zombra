@@ -1,23 +1,49 @@
 .Line {
   width: 100%;
-  padding: 3px 0;
   background: #ddd;
   font-family: "Courier New";
   white-space: pre-wrap;
+  display: flex;
 }
 .Line:focus {
   background: #bbb;
   outline: none;
 }
 .LineText {
+  padding: 2px 0;
   white-space: pre-wrap;
 }
 .LineNumber {
-  padding: 3px 10px;
+  padding: 2px 12px;
   user-select: none;
   color: #ccc;
   background: #333;
 }
 .LineNumber:hover {
   cursor: default;
+}
+
+.TextEditor {
+  position: relative;;
+}
+
+.Page {
+  position: relative;;
+}
+
+.Cursor {
+  position: absolute;
+  height: 22px;
+  z-index: 10;
+  top: 0;
+  left: 43px;
+  width: 2px;
+  background: #ff0000;
+}
+
+.LineText::-moz-selection {
+  background: rgba(255,0,0,0.1);
+}
+.LineText::selection {
+  background: rgba(255,0,0,0.1);
 }
