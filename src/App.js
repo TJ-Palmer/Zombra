@@ -35,28 +35,11 @@ class App extends Component {
     });
   }
 
-  handleKeyDown(event, page, lineNumber) {
-    if (event.key.length === 1) {
-      let files = this.state.files;
-      let index = files.findIndex(file => file.id === page.id);
-
-      if (files[index]) {
-        let line = files[index].lines[lineNumber - 1];
-        line += event.key;
-        files[index].lines[lineNumber - 1] = line;
-        this.setState({files: files});
-      }
-    }
-  }
-
   render() {
     return (
       <div className="App">
         <h3>Hello World!</h3>
-        <TextEditor
-          files={this.state.files}
-          onKeyDown={this.handleKeyDown.bind(this)}
-        />
+        <TextEditor files={this.state.files} />
       </div>
     );
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Number from './Line/Number';
+import Text from './Line/Text';
 
 class Line extends Component {
   keyDown(lineNumber, event) {
@@ -6,22 +8,18 @@ class Line extends Component {
     event.preventDefault();
   }
 
-  getSpaces(lastLineNumber, number) {
-    let amount = lastLineNumber.toString().length - number.toString().length;
-    let spaces = "";
-    for (var i = 0; i < amount; i++) {
-      spaces += " ";
-    }
-    return spaces;
+  mouseDown(lineNumber, event) {
+    this.props.onMouseDown(event, lineNumber);
   }
 
   render() {
     return (
-      <div className="Line" tabIndex="0"
+      <div className="Line" tabIndex="-1"
         onKeyDown={this.keyDown.bind(this, this.props.number)}
+        onMouseDown={this.mouseDown.bind(this, this.props.number)}
       >
-        <span className="LineNumber">{this.getSpaces(this.props.lastLineNumber, this.props.number) + this.props.number}</span>
-        <span className="LineText">{this.props.text}</span>
+        <Number lastLineNumber={this.props.lastLineNumber} number={this.props.number} />
+        <Text text={this.props.text} />
       </div>
     );
   }

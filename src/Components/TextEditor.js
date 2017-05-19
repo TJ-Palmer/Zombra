@@ -16,7 +16,6 @@ class TextEditor extends Component {
             <Page
               key={file.id}
               file={file}
-              onKeyDown={this.keyDown.bind(this)}
             />
           );
         });
