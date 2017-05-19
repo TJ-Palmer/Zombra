@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Page from './TextEditor/Page';
 
 class TextEditor extends Component {
+  keyDown(event, page, lineNumber) {
+    this.props.onKeyDown(event, page, lineNumber);
+  }
+
   render() {
     let pages;
     if (this.props.files) {
@@ -9,7 +13,11 @@ class TextEditor extends Component {
         pages = this.props.files.map(file => {
           //console.log(file);
           return (
-            <Page key={file.id} file={file} />
+            <Page
+              key={file.id}
+              file={file}
+              onKeyDown={this.keyDown.bind(this)}
+            />
           );
         });
       }
