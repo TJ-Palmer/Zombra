@@ -24,26 +24,54 @@
 }
 
 .TextEditor {
-  position: relative;;
+  position: relative;
 }
 
 .Page {
-  position: relative;;
+  position: relative;
+  overflow: auto;
 }
 
 .Cursor {
   position: absolute;
-  height: 22px;
+  display: block;
+  height: 22.2px;
   z-index: 10;
-  top: 0;
-  left: 43px;
+  top: 42px;
+  left: 42px;
   width: 2px;
-  background: #ff0000;
+  background: #000;
+  opacity: 1;
+  animation: cursorBlink 1s infinite;
 }
+
 
 .LineText::-moz-selection {
   background: rgba(255,0,0,0.1);
 }
 .LineText::selection {
   background: rgba(255,0,0,0.1);
+}
+
+@keyframes cursorBlink {
+  0%{opacity:1}
+  15%{opacity:0}
+  50%{opacity:0}
+  75%{opacity:1}
+  100%{opacity:1}
+}
+@-webkit-keyframes cursorBlink {
+  0%{opacity:1}
+  15%{opacity:0}
+  50%{opacity:0}
+  75%{opacity:1}
+  100%{opacity:1}
+}
+
+
+@keyframes cursorSolid {
+  0%{opacity:1}
+}
+@-webkit-keyframes cursorSolid {
+  0%{opacity:1}
 }
