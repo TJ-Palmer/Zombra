@@ -19,7 +19,7 @@ class Page extends Component {
       <Measure onMeasure={(pageDimensions) => {this.setState({pageDimensions})}} >
         <div className="Page">
           <Numbers amount={this.props.file.lines.length} />
-          <Lines lines={this.props.file.lines} pageDimensions={this.state.pageDimensions}/>
+          <Lines file={this.props.file} pageDimensions={this.state.pageDimensions}/>
         </div>
       </Measure>
     );

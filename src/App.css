@@ -1,10 +1,23 @@
+* {padding:0;margin:0;}
+
+html{
+  background: #333;
+  min-height: 100%;
+}
+
+/* Text Editor CSS */
+.TextEditor {
+  position: relative;
+  margin-left: 200px;
+}
 .Numbers {
   float: left;
-  background: #ff0000;
+  background: #222;
+  min-height: 100vh;
 }
 .Number {
   text-align: right;
-  background: #333;
+  background: #222;
   color: #ccc;
   padding: 4px 12px;
   user-select: none;
@@ -19,29 +32,28 @@
 }
 .Line {
   height: 1em;
-  background: #ddd;
+  background: #333;
+  color: #ccc;
   padding: 4px 0;
 }
 .Line:focus {
-  background: #bbb;
+  background: #252525;
   outline: none;
 }
 .LineText {
   white-space: pre;
 }
-.Line:focus {
-  background: #bbb;
-  outline: none;
+.token::-moz-selection {
+  background: rgba(255,255,255,.1);
+}
+.token::selection {
+  background: rgba(255,255,255,.1);
 }
 .LineText::-moz-selection {
-  background: rgba(255,0,0,0.1);
+  background: rgba(255,255,255,.1);
 }
 .LineText::selection {
-  background: rgba(255,0,0,0.1);
-}
-
-.TextEditor {
-  position: relative;
+  background: rgba(255,255,255,.1);
 }
 
 .Page {
@@ -49,6 +61,7 @@
   font-family: "Courier New";
 }
 
+/* Cursor CSS */
 .Cursor {
   position: absolute;
   display: block;
@@ -60,7 +73,6 @@
   width: 2px;
   background: #ff0000;
 }
-
 @keyframes cursorBlink {
   0%{opacity:1}
   15%{opacity:0}
@@ -81,4 +93,80 @@
 }
 @-webkit-keyframes cursorSolid {
   0%{opacity:1}
+}
+
+/* Landing CSS */
+.Landing {
+  background: #fb4646;
+  height: 100vh;
+  width: 100%;
+  font-family: "Roboto";
+}
+.Landing-Logo {
+  height: 200px;
+}
+.Landing-Logo-Image {
+  height: 100%;
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.Menu {
+  width: 300px;
+  margin: 20px auto;
+}
+.Menu-Button {
+  background: rgba(0,0,0,0);
+  border: 2px solid #fff;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Arial';
+  color: #fff;
+  user-select: none;
+}
+.Menu-Button:hover {
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+/* Project Tree CSS */
+.ProjectTree {
+  z-index: 998;
+  width: 200px;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+  position: fixed;
+  font-family: "Roboto";
+  color: #fff;
+}
+
+.FolderItems {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+.FolderRoot {
+  margin-left: 20px;
+  user-select: none;
+}
+.FolderRoot:hover {
+  cursor: default;
+}
+.Folder {
+  list-style-type: circle;
+}
+.File {
+
+}
+.ProjectTreeContextMenu {
+  z-index: 999;
+  display: none;
+  position: fixed;
+  width: 200px;
+  height: 300px;
+  background: #ff0000;
+}
+.ProjectTreeAdd {
+  width: 100%;
 }
